@@ -1,0 +1,110 @@
+$marine-blue: hsl(213, 96%, 18%);
+$purplish-blue: hsl(243, 100%, 62%);
+$pastel-blue: hsl(228, 100%, 84%);
+$light-blue: hsl(206, 94%, 87%);
+$strawberry-red: hsl(354, 84%, 57%);
+$cool-gray: hsl(231, 11%, 63%);
+$light-gray: hsl(229, 24%, 87%);
+$magnolia: hsl(217, 100%, 97%);
+$alabaster: hsl(231, 100%, 99%);
+$white: hsl(0, 0%, 100%);
+
+.app {
+	display: flex;
+	height: 100vh;
+	width: 100vh;
+	justify-content: center;
+	align-items: center;
+
+	.card {
+		padding: 1em;
+		background-color: $white;
+		border-radius: 1em;
+		display: flex;
+		gap: 2em;
+
+		.counter {
+			border-radius: 1em;
+
+			display: flex;
+			position: relative;
+
+			.lines {
+				position: absolute;
+				display: flex;
+				flex-direction: column;
+				gap: 1.8em;
+				padding: 1em;
+
+				.line {
+					display: flex;
+					gap: 1em;
+					align-items: center;
+
+					.number {
+						padding: 1em;
+						border-radius: 50%;
+						border: solid 1px $light-blue;
+						width: 0.6em;
+						height: 0.6em;
+						display: flex;
+						align-items: center;
+						color: $white;
+
+						&.current {
+							background-color: $light-blue;
+							color: $marine-blue;
+						}
+					}
+
+					.texts {
+
+						p {
+							color: $cool-gray;
+							font-size: 0.9em;
+						}
+
+						h3 {
+							text-transform: uppercase;
+							color: $white;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.content {
+		min-width: 500px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		color: $marine-blue;
+		padding: 3em;
+
+		.heading {
+			h1 {
+				margin: 0 0 0.5em 0;
+			}
+
+			p {
+				max-width: 500px;
+				color: $cool-gray;
+			}
+		}
+
+
+
+		.fields {
+			display: flex;
+			flex-direction: column;
+			gap:2em;
+		}
+
+		.actions{
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+
+}
