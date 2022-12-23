@@ -1,5 +1,10 @@
 import React, {useState} from "react"
-import {Button, TextField} from "@mui/joy";
+import {Button, Switch, TextField} from "@mui/joy";
+import "./Steps.scss";
+import {PricingItem, pricingItemsDetails} from "./PricingItem";
+import thanks from "./images/icon-thank-you.svg";
+import classNames from "classnames";
+
 
 export type StepProps = {
     id: number,
@@ -14,7 +19,7 @@ export type StepsData = {
     email: string,
     phone: string,
     monthly: boolean,
-    billing: "Arcade" | "Advanced" | "Pro",
+    billing: string,
     addOns: string[],
 }
 
@@ -23,7 +28,7 @@ export default function Steps(props: StepProps) {
         name: "",
         email: "",
         phone: "",
-        monthly: true,
+        monthly: false,
         billing: "Arcade",
         addOns: ["Online service", "Larger storage"]
     })
@@ -35,8 +40,11 @@ export default function Steps(props: StepProps) {
     }
 
     function handleNext() {
-        if(!data.phone){
+        if (!data.phone) {
             setRequiredMissing(true)
+            return
+        }
+        if (props.id > 5) {
             return
         }
         props.onNext()
@@ -60,22 +68,43 @@ export default function Steps(props: StepProps) {
                    helperText={requiredMissing && "This field is required"}
                    label="Phone Number"
                    placeholder="e.g. +1 555 567 890"/>
-
     </div>
 
-    return <div className="content">
-        <div className="heading">
+    const pricingItems = <div className="pricing-items">
+        <div className="prices">
+            {pricingItemsDetails.map(it => <PricingItem key={it.title}
+                                                        monthly={data.monthly}
+                                                        icon={it.icon}
+                                                        title={it.title}
+                                                        monthlyPrice={it.monthlyPrice}
+                                                        yearlyPrice={it.yearlyPrice}
+                                                        active={it.title === data.billing}
+                                                        tagLine={it.tagLine}
+                                                        onChange={() => updateData({billing: it.title})}
+            />)}
+        </div>
+        <div className="toggle">
+            <Switch checked={!data.monthly}
+                    onChange={(ev) => updateData({monthly: !ev.target.checked})}
+                    startDecorator="Monthly"
+                    endDecorator="Yearly"/>
+        </div>
+    </div>
+
+    return <div className={classNames("content", props.id >= 5 && "last")}>
+        <div className={classNames("heading", props.id >= 5 && "last")}>
+            {props.id >= 5 && <img src={thanks} aria-hidden="true" alt=""/>}
             <h1>{props.title}</h1>
             <p>{props.description}</p>
         </div>
         {props.id === 1 && textFields}
-        {props.id === 2 && <div>Something else</div>}
-
-        <div className="actions">
-            {props.id !== 1 ? <Button variant="plain" onClick={() => props.onPrevious()}>Back</Button>
+        {props.id === 2 && pricingItems}
+        {props.id < 5 && <div className="actions">
+                {props.id !== 1 ? <Button variant="plain" onClick={() => props.onPrevious()}>Back</Button>
                     : <div aria-hidden="true"></div>}
-            <Button onClick={() => handleNext()}>Next Step</Button>
-        </div>
+                <Button onClick={() => handleNext()}>Next Step</Button>
+            </div>
+        }
     </div>
 
 }

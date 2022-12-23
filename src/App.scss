@@ -74,37 +74,5 @@ $white: hsl(0, 0%, 100%);
 		}
 	}
 
-	.content {
-		min-width: 500px;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		color: $marine-blue;
-		padding: 3em;
-
-		.heading {
-			h1 {
-				margin: 0 0 0.5em 0;
-			}
-
-			p {
-				max-width: 500px;
-				color: $cool-gray;
-			}
-		}
-
-
-
-		.fields {
-			display: flex;
-			flex-direction: column;
-			gap:2em;
-		}
-
-		.actions{
-			display: flex;
-			justify-content: space-between;
-		}
-	}
 
 }

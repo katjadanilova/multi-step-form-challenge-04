@@ -74,8 +74,8 @@ function App() {
             <div className="card">
                 <Counter currentStep={currentStep}/>
                 <Steps id={currentStep}
-                       title={stepsInfo[currentStep].title}
-                       description={stepsInfo[currentStep].description}
+                       title={stepsInfo[currentStep - 1].title}
+                       description={stepsInfo[currentStep - 1].description}
                        onNext={() => setCurrentStep(stepsInfo[currentStep].id)}
                        onPrevious={() => setCurrentStep(stepsInfo[currentStep].id - 2)}
                 />

@@ -10,6 +10,9 @@ const theme = extendTheme({
             palette: {
                 neutral: {
                     outlinedColor: "hsl(213, 96%, 18%)",
+                    solidBg:"#174a8b",
+                    solidActiveBg: "#174a8b",
+                    solidHoverBg: "#174a8b",
                 },
                 text: {
                     primary: "hsl(213, 96%, 18%)",
