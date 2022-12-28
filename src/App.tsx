@@ -1,10 +1,11 @@
 /// <reference types="react-scripts" />
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.scss';
 import Steps from "./Steps";
 import classNames from 'classnames';
-import BG from "./images/bg-sidebar-desktop.svg"
+import BG from "./images/bg-sidebar-desktop.svg";
+import smallBG from "./images/bg-sidebar-mobile.svg";
 
 type CounterProps = {
     currentStep: number,
@@ -18,8 +19,35 @@ function Counter(props: CounterProps) {
         {id: 4, title: "Summary"},
     ]
 
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+    function handleResize() {
+        setScreenWidth(window.innerWidth);
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    if (screenWidth < 1000) {
+        return <div className="counter-mobile">
+            <img width={screenWidth} src={smallBG} alt="" aria-hidden="true"/>
+            <div className="lines-mobile">
+            {
+                counterContent.map(it =>
+                    <strong key={it.id} className={classNames("number", it.id === props.currentStep && "current")}>
+                        {it.id}
+                    </strong>)
+            }
+            </div>
+        </div>
+    }
+
     return <div className="counter">
-        <img src={BG} alt=""/>
+        <img src={BG} alt="" aria-hidden="true"/>
         <div className="lines">
             {
                 counterContent.map(it => <div key={it.id} className="line">
@@ -78,7 +106,9 @@ function App() {
                        description={stepsInfo[currentStep - 1].description}
                        onNext={() => setCurrentStep(stepsInfo[currentStep].id)}
                        onPrevious={() => setCurrentStep(stepsInfo[currentStep].id - 2)}
+                       changeBillingType={() => setCurrentStep(stepsInfo[currentStep].id - 3)}
                 />
+
             </div>
         </div>
     );

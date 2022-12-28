@@ -9,12 +9,18 @@ $magnolia: hsl(217, 100%, 97%);
 $alabaster: hsl(231, 100%, 99%);
 $white: hsl(0, 0%, 100%);
 
+
 .app {
 	display: flex;
 	height: 100vh;
-	width: 100vh;
+	width: 100%;
 	justify-content: center;
 	align-items: center;
+
+
+	@media (max-width: 1000px) {
+		align-items: flex-start;
+	}
 
 	.card {
 		padding: 1em;
@@ -22,10 +28,50 @@ $white: hsl(0, 0%, 100%);
 		border-radius: 1em;
 		display: flex;
 		gap: 2em;
+		box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+
+		@media (max-width: 1000px) {
+			flex-direction: column;
+			padding: 0;
+			border-radius: unset;
+			background-color: $magnolia;
+			align-items: center;
+			box-shadow: none;
+		}
+
+		.counter-mobile {
+			display: flex;
+			position: relative;
+			justify-content: center;
+
+			.lines-mobile {
+				position: absolute;
+				display: flex;
+				gap: 1.8em;
+				padding: 1em;
+
+
+			}
+		}
+
+		.number {
+			padding: 1em;
+			border-radius: 50%;
+			border: solid 1px $light-blue;
+			width: 0.5em;
+			height: 0.5em;
+			display: flex;
+			align-items: center;
+			color: $white;
+
+			&.current {
+				background-color: $light-blue;
+				color: $marine-blue;
+			}
+		}
 
 		.counter {
 			border-radius: 1em;
-
 			display: flex;
 			position: relative;
 
@@ -41,24 +87,7 @@ $white: hsl(0, 0%, 100%);
 					gap: 1em;
 					align-items: center;
 
-					.number {
-						padding: 1em;
-						border-radius: 50%;
-						border: solid 1px $light-blue;
-						width: 0.6em;
-						height: 0.6em;
-						display: flex;
-						align-items: center;
-						color: $white;
-
-						&.current {
-							background-color: $light-blue;
-							color: $marine-blue;
-						}
-					}
-
 					.texts {
-
 						p {
 							color: $cool-gray;
 							font-size: 0.9em;
