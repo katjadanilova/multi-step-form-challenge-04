@@ -20,8 +20,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Github](https://github.com/katjadanilova/multi-step-form-challenge-04)
+- Live Site URL: [Live site on Vercel](https://multi-step-form-challenge-04.vercel.app/)
 
 ## My process
 

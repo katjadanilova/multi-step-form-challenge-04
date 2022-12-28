@@ -79,7 +79,7 @@ export default function Steps(props: StepProps) {
                    placeholder="e.g. stephen.king@example.com"/>
         <TextField value={data.phone}
                    onChange={(ev) => updateData({phone: ev.target.value})}
-                   required
+                   required={true}
                    error={requiredMissing}
                    helperText={requiredMissing && "This field is required"}
                    label="Phone Number"
